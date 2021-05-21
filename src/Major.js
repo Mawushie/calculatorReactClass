@@ -60,7 +60,7 @@ class Major extends React.Component{
 
                 <div class="col-md-3 orangecols">
                     <h2 getInputVal = {this.props.getInputVal} onClick = {this.handleOnClick}>
-                        X
+                        *
                     </h2>
                 </div>
 

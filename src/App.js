@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Display from './Display';
 import Major from './Major';
@@ -14,6 +13,47 @@ class App extends React.Component{
     }
   }
 
+  calculate = () => {
+      let results = this.state.display;
+       if(results.includes("÷")){
+        let final = results.replace("÷","/")
+        this.setState({
+        display : eval(final)
+      })
+    }
+
+    else if(results.includes("%")){
+      let final = results.replace("%","/100")
+      this.setState({
+        display: eval(final)
+      })
+    }
+
+    else  if (results.includes('--')){
+      results = results.replace('--','+')
+  }
+
+    else{
+      this.setState({
+        display : eval(results)
+      })
+      }
+
+      try {
+        this.setState({
+            // eslint-disable-next-line
+            display: eval(results)
+        })
+    } catch (e) {
+        this.setState({
+            result: "error"
+        })
+
+    }
+};    
+  
+
+  
   getInputVal = (h2) => {
     if(h2 === "Reset"){
       this.setState(
@@ -23,20 +63,30 @@ class App extends React.Component{
       )
     }
     else if(h2 === "Back"){
+      let display = this.state.display;
+      let fin = display.toString()
+      let finalDisplay = fin.slice(0, -1)
       this.setState(
-        {
-          display: this.state.display.slice(0, -1)
-        }
-      )
+            {
+              display: finalDisplay
+              
+            })
+      
     }
+
+  
+    else if(h2 === "="){
+      this.calculate();
+    }
+   
 
     else{
     this.setState({
       display : this.state.display + h2
-    });
-   
+    })
   }
 }
+  
   
   render(){
     return (

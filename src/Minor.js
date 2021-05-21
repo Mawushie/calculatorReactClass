@@ -1,10 +1,7 @@
 import React from 'react'
 
 class Minor extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
+   
     handleOnClick = (event) => {
         let val = event.target.innerHTML;
         this.props.getInputVal(val);
