@@ -17,43 +17,73 @@ class App extends React.Component{
       let results = this.state.display;
        if(results.includes("÷")){
         let final = results.replace("÷","/")
+        
+       try {
         this.setState({
-        display : eval(final)
-      })
+          display: eval(final)
+        })
+
+    } catch (e) {
+        this.setState({
+            display: "invalid input"
+        })
+
     }
+ }
+    
 
     else if(results.includes("%")){
       let final = results.replace("%","/100")
-      this.setState({
-        display: eval(final)
-      })
+      
+      try {
+        this.setState({
+          display: eval(final)
+        })
+
+    } catch (e) {
+        this.setState({
+            display: "invalid input"
+        })
+
     }
+ }
+    
 
     else  if (results.includes('--')){
       results = results.replace('--','+')
-  }
-
-    else{
-      this.setState({
-        display : eval(results)
-      })
-      }
 
       try {
         this.setState({
-            // eslint-disable-next-line
-            display: eval(results)
+          display: eval(results)
         })
+
     } catch (e) {
         this.setState({
-            result: "error"
+            display: "invalid input"
         })
 
     }
-};    
-  
+ 
+  }
 
+    else{
+
+      try {
+        this.setState({
+          display: eval(results)
+        })
+
+
+    } catch (e) {
+        this.setState({
+            display: "invalid input"
+        })
+
+    }
+ }
   
+}  
+    
   getInputVal = (h2) => {
     if(h2 === "Reset"){
       this.setState(
