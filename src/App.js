@@ -14,9 +14,21 @@ class App extends React.Component{
   }
 
   calculate = () => {
-      let results = this.state.display;
-       if(results.includes("÷")){
-        let final = results.replace("÷","/")
+    let results = this.state.display;
+
+    for(var i = 0; i < results.length ; i++){
+        if(results[i] != 0){
+           
+          break;
+           
+        }
+    }
+        var newResults = results.slice(i ,results.length) 
+        console.log(newResults)
+    
+    
+       if(newResults.includes("÷")){
+        let final = newResults.replace("÷","/")
         
        try {
         this.setState({
@@ -32,8 +44,8 @@ class App extends React.Component{
  }
     
 
-    else if(results.includes("%")){
-      let final = results.replace("%","/100")
+    else if(newResults.includes("%")){
+      let final = newResults.replace("%","/100")
       
       try {
         this.setState({
@@ -49,12 +61,12 @@ class App extends React.Component{
  }
     
 
-    else  if (results.includes('--')){
-      results = results.replace('--','+')
+    else  if (newResults.includes('--')){
+      newResults = newResults.replace('--','+')
 
       try {
         this.setState({
-          display: eval(results)
+          display: eval(newResults)
         })
 
     } catch (e) {
@@ -70,7 +82,7 @@ class App extends React.Component{
 
       try {
         this.setState({
-          display: eval(results)
+          display: eval(newResults)
         })
 
 
