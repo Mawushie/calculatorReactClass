@@ -18,15 +18,12 @@ class App extends React.Component{
 
     for(var i = 0; i < results.length ; i++){
         if(results[i] != 0){
-           
           break;
            
         }
     }
         var newResults = results.slice(i ,results.length) 
-        console.log(newResults)
-    
-    
+        
        if(newResults.includes("÷")){
         let final = newResults.replace("÷","/")
         
@@ -56,7 +53,6 @@ class App extends React.Component{
         this.setState({
             display: "invalid input"
         })
-
     }
  }
     
@@ -73,27 +69,20 @@ class App extends React.Component{
         this.setState({
             display: "invalid input"
         })
-
     }
- 
   }
 
     else{
-
       try {
         this.setState({
           display: eval(newResults)
         })
-
-
     } catch (e) {
         this.setState({
             display: "invalid input"
         })
-
     }
  }
-  
 }  
     
   getInputVal = (h2) => {
@@ -113,14 +102,11 @@ class App extends React.Component{
               display: finalDisplay
               
             })
-      
     }
 
-  
     else if(h2 === "="){
       this.calculate();
     }
-   
 
     else{
     this.setState({
@@ -128,7 +114,6 @@ class App extends React.Component{
     })
   }
 }
-  
   
   render(){
     return (
