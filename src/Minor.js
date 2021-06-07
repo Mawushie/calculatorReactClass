@@ -11,21 +11,21 @@ class Minor extends React.Component{
         return(
             <div class="row text-center">
                         <div class="col-md-6 col-sm-6 col-xs-6 lightgraycols">
-                            <h2 getInputVal = {this.props.getInputVal}  onClick = {this.handleOnClick}>
+                            <h3 getInputVal = {this.props.getInputVal}  onClick = {this.handleOnClick}>
                                 0
-                            </h2>
+                            </h3>
                         </div>
 
                         <div class="col-md-3 col-sm-3 col-xs-3 lightgraycols">
-                            <h2 getInputVal = {this.props.getInputVal}  onClick = {this.handleOnClick}>
+                            <h3 getInputVal = {this.props.getInputVal}  onClick = {this.handleOnClick}>
                                 .
-                            </h2>
+                            </h3>
                         </div>
 
                         <div class="col-md-3 col-sm-3 col-xs-3 orangecols">
-                            <h2 getInputVal = {this.props.getInputVal}  onClick = {this.handleOnClick}>
+                            <h3 getInputVal = {this.props.getInputVal}  onClick = {this.handleOnClick}>
                                 =
-                            </h2>
+                            </h3>
                         </div>
                     </div>
         )
