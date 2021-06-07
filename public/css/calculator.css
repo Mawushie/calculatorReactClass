@@ -11,15 +11,15 @@ body{
 
 .lightgraycols{
     background-color: #e0e0e0;
-    border-right: grey 0.5px solid;
-    border-bottom: grey 0.5px solid;
+    border-right: black 0.5px solid;
+    border-bottom: black 0.5px solid;
     font-size: 20px;
 }
 
 .orangecols{
     background-color: #f3913c;
     border-right: 0px;
-    border-bottom: grey 0.5px solid;
+    border-bottom: black 0.5px solid;
     color: white;
     font-size: 20px;
 }
