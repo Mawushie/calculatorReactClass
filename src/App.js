@@ -9,91 +9,119 @@ class App extends React.Component{
     super(props)
     
     this.state = {
-      display: ""
+      display: "" ,
+      afterCalc : false
+    }
+  }
+
+  checkinput = () => {
+    let result = this.state.display.toString();
+    console.log(result.includes("*"))
+    if(result.includes("*") ){
+      console.log("called")
+      this.setState({
+        display : this.state.display
+      })
+      
+    }
+    else{
+      console.log("not working")
     }
   }
 
   calculate = () => {
-    let results = this.state.display;
-
+   
+    this.checkinput()
+    var results = this.state.display
     for(var i = 0; i < results.length ; i++){
-        if(results[i] != 0){
+        if(results[i] !== 0){
           break;
            
         }
-    }
-        var newResults = results.slice(i ,results.length) 
+   
+      }
+      var newResults = results.slice(i ,results.length) 
         
-       if(newResults.includes("÷")){
+     if(newResults.includes("÷")){
         let final = newResults.replace("÷","/")
         
-       try {
-        this.setState({
-          display: eval(final)
-        })
+          try {
+            this.setState({
+              display: eval(final) ,
+              afterCalc : true
+            })
 
-    } catch (e) {
-        this.setState({
-            display: "invalid input"
-        })
+        } catch (e) {
+            this.setState({
+                display: "invalid input",
+                afterCalc : true
+            })
 
-    }
- }
+        }
+      }
     
-
     else if(newResults.includes("%")){
       let final = newResults.replace("%","/100")
       
-      try {
-        this.setState({
-          display: eval(final)
-        })
+        try {
+          this.setState({
+            display: eval(final),
+            afterCalc : true
+          })
 
-    } catch (e) {
-        this.setState({
-            display: "invalid input"
-        })
+      } catch (e) {
+          this.setState({
+              display: "invalid input",
+              afterCalc : true
+          })
+      }
     }
- }
     
 
     else  if (newResults.includes('--')){
       newResults = newResults.replace('--','+')
 
-      try {
-        this.setState({
-          display: eval(newResults)
-        })
+        try {
+          this.setState({
+            display: eval(newResults),
+            afterCalc : true
+          })
 
-    } catch (e) {
-        this.setState({
-            display: "invalid input"
-        })
+      } catch (e) {
+          this.setState({
+              display: "invalid input",
+              afterCalc : true
+          })
+     }
     }
-  }
 
     else{
-      try {
-        this.setState({
-          display: eval(newResults)
-        })
-    } catch (e) {
-        this.setState({
-            display: "invalid input"
-        })
-    }
- }
-}  
-    
+        try {
+          console.log("calledagain")
+          this.setState({
+            display: eval(newResults),
+            afterCalc : true
+          })
+      } catch (e) {
+          this.setState({
+              display: "invalid input",
+              afterCalc : true
+          })
+      }
+    }  
+}
+
   getInputVal = (h2) => {
-    if(h2 === "Reset"){
+    const input = h2.target.innerHTML;
+ 
+    if(input === "Reset"){
       this.setState(
        {
          display : " "
        }
       )
     }
-    else if(h2 === "Back"){
+    else if(input === "Back"){
       let display = this.state.display;
       let fin = display.toString()
       let finalDisplay = fin.slice(0, -1)
@@ -104,13 +132,20 @@ class App extends React.Component{
             })
     }
 
-    else if(h2 === "="){
+    else if(input === "="){
       this.calculate();
+    }
+
+    else if(this.state.afterCalc){
+      this.setState({
+        display : input,
+        afterCalc : false
+      })
     }
 
     else{
     this.setState({
-      display : this.state.display + h2
+      display : this.state.display.concat(input)
     })
   }
 }
